@@ -24,6 +24,10 @@ function ResultsPage() {
     );
   };
 
+  const select = () => {
+
+  };
+
   return (
     <div className="results-container">
       <h1>Here are your outfit options! 👕👖</h1>
@@ -35,6 +39,7 @@ function ResultsPage() {
       </div>
       <div className="button-container">
         <button style={{ margin: '10px' }} onClick={prevOutfit}>Previous</button>
+        <button style={{ margin: '10px' , color: 'white' , backgroundColor: 'mediumseagreen'}} onClick={select}>Select</button>
         <button style={{ margin: '10px' }} onClick={nextOutfit}>Next</button>
       </div>
       <button style={{ margin: '10px' }} onClick={() => navigate("/")}>Back to Home</button>
