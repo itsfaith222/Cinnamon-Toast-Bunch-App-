@@ -2,7 +2,43 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import '../App.css'; // Optional for additional styling
 
+import { generateOutfitDescription } from "../utils/geminiService";
+import { analyzeImage } from "../utils/clarifaiService";
+
+
 function ResultsPage() {
+  const [outfits, setOutfits] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchOutfitData() {
+      const storedFiles = JSON.parse(localStorage.getItem("uploadedFiles")) || { shirts: [], pants: [] };
+      const generatedOutfits = [];
+
+      for (const shirt of storedFiles.shirts) {
+        for (const pant of storedFiles.pants) {
+          // Analyze both items with Clarifai
+          const shirtTags = await analyzeImage(shirt);
+          const pantTags = await analyzeImage(pant);
+
+          // Generate AI description with Gemini
+          const description = await generateOutfitDescription(shirtTags, pantTags);
+
+          generatedOutfits.push({
+            shirt,
+            pant,
+            description,
+          });
+        }
+      }
+
+      setOutfits(generatedOutfits);
+      setLoading(false);
+    }
+
+    fetchOutfitData();
+  }, []);
+
   const navigate = useNavigate();
   const [uploadedFiles, setUploadedFiles] = useState({ shirts: [], pants: [] });
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -38,6 +74,7 @@ function ResultsPage() {
   return (
     <div className="results-container">
       <h1>Here are your outfit options! 👕👖</h1>
+      
       <div className={`outfit-display ${selected ? 'magnify' : ''}`}>
         <div>
           <p><strong>Top:</strong></p>
@@ -46,6 +83,8 @@ function ResultsPage() {
         <div>
           <p><strong>Bottom:</strong></p>
           <img src={outfitCombinations[currentIndex].bottom} alt="Bottom" width="150" />
+          <p>Here is where we can put the description of the generated outfit!</p>
+          <p>Add a positive message to make the user feel confident like ex "this will look great on you"</p>
         </div>
         {selected && <p className="congrats">🎉 Congratulations on selecting an outfit! 🎉</p>}
       </div>
