@@ -23,11 +23,10 @@ function HomePage() {
 
   return (
     <div>
-      
       <h2>Welcome To Fit Roulette!</h2>
-      <img src="/shiny_glock.jpeg" alt="HomePage_Picture" width="400" /><br />
+      <img src="/shiny_glock.jpeg" alt="HomePage_Picture" width="400"  />
       <p>Scroll to get started!</p>
-      <hr />
+      <br></br><br></br><br></br><br></br>
       <form onSubmit={handleSubmit}>
         <h3>Enter Your Name</h3>
         <input type="text" placeholder="Your name" value={name} onChange={(e) => setName(e.target.value)} />
