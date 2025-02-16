@@ -59,8 +59,8 @@ function ResultsPage() {
         <div>
           <p><strong>Bottom:</strong></p>
           <img src={outfitCombinations[currentIndex].bottom} alt="Bottom" width="150" />
-          <p>Here is where we can put the description of the generated outfit!</p>
-          <p>Add a positive message to make the user feel confident like ex "this will look great on you"</p>
+          
+          <p><strong>Pro-tip:</strong> Accessorize this outfit to make it more <i>you</i>.🌺</p>
         </div>
         {selected && <p className="congrats">🎉 Congratulations on selecting an outfit! 🎉</p>}
       </div>
