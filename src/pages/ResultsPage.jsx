@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import '../App.css'; 
 
-import { generateOutfitDescription } from "../utils/geminiService";
-import { analyzeImage } from "../utils/clarifaiService";
+
 
 function ResultsPage() {
   const navigate = useNavigate();
