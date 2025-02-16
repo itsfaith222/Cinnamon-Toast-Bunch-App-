@@ -20,6 +20,7 @@ export async function generateOutfitDescription(shirtTags, pantsTags) {
 
   try {
     const response = await model.generateContent(prompt);
+    console.log("DEBUG")
     return response.text(); // Returns the AI-generated outfit description
   } catch (error) {
     console.error("Gemini AI Error:", error);
