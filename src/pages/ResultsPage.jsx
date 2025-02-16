@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import '../App.css'; // Optional for additional styling
+import '../App.css'; 
 
 import { generateOutfitDescription } from "../utils/geminiService";
 import { analyzeImage } from "../utils/clarifaiService";
@@ -19,6 +19,17 @@ function ResultsPage() {
   const outfitCombinations = uploadedFiles.shirts.flatMap((top) =>
     uploadedFiles.pants.map((bottom) => ({ top, bottom }))
   );
+
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+  const storedName = localStorage.getItem("userName");
+  if (storedName) setUserName(storedName);
+
+  const storedFiles = JSON.parse(localStorage.getItem("uploadedFiles"));
+  if (storedFiles) setUploadedFiles(storedFiles);
+  }, []);
+
 
   const nextOutfit = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % outfitCombinations.length);
@@ -40,7 +51,7 @@ function ResultsPage() {
 
   return (
     <div className="results-container">
-      <h1>Here are your outfit options! 👕👖</h1>
+      <h1>Here are your outfit options, {userName} ! 👕👖</h1>
       <div className={`outfit-display ${selected ? 'magnify' : ''}`}>
         <div>
           <p><strong>Top:</strong></p>
