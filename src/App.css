@@ -40,3 +40,18 @@
 .read-the-docs {
   color: #888;
 }
+
+.outfit-display.magnify img {
+  transform: scale(1.2);
+  transition: transform 0.5s ease;
+}
+.congrats {
+  color: green;
+  font-size: 1.5em;
+  margin-top: 10px;
+  animation: fadeIn 1s;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

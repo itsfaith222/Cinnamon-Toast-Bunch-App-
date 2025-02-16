@@ -6,7 +6,8 @@ function UploadForm({ category, onUpload }) {
   const handleFileChange = (event) => {
     const selectedFiles = Array.from(event.target.files);
     setFiles(selectedFiles);
-    onUpload(category, selectedFiles);
+    const fileURLs = selectedFiles.map((file) => URL.createObjectURL(file));
+    onUpload(category, fileURLs);
   };
 
   return (
