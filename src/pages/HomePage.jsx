@@ -5,7 +5,7 @@ import UploadForm from "../components/UploadForm";
 function HomePage() {
   const navigate = useNavigate();
   const [name, setName] = useState("");
-  const [uploadedFiles, setUploadedFiles] = useState({ shirts: [], pants: [] });
+  const [uploadedFiles, setUploadedFiles] = useState({ tops: [], bottoms: [] });
 
   const handleSubmit = (e) => {
     e.preventDefault();
